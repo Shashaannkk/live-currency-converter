@@ -186,6 +186,7 @@ function setupDropdown(elementId, type, codes) {
 
         if (!isOpen) {
             container.classList.add('open');
+            container.closest('.select-group').classList.add('z-active'); // Bring parent to front
             searchInput.focus(); // Focus search immediately on open
         } else {
             closeDropdown(container);
@@ -336,7 +337,7 @@ swapBtn.addEventListener('click', () => {
 
     // Animation
     swapBtn.classList.add('spin');
-    setTimeout(() => swapBtn.classList.remove('spin'), 300);
+    setTimeout(() => swapBtn.classList.remove('spin'), 1000);
 });
 
 // Global Shortcuts

@@ -416,6 +416,15 @@ input[type="number"]:focus {
     border-color: transparent;
 }
 
+.swap-btn.spin {
+    transform: rotate(360deg);
+    background: var(--accent-color);
+    color: #fff;
+    box-shadow: 0 0 25px var(--accent-glow), 0 0 5px rgba(255, 255, 255, 0.5);
+    /* Stronger glow */
+    border-color: transparent;
+}
+
 /* Result Area */
 .result-container {
     background: rgba(0, 0, 0, 0.25);
@@ -472,9 +481,11 @@ footer p {
         align-items: flex-start;
         /* Align top on mobile to avoid keyboard covering centered content */
         padding-top: 10vh;
-        min-height: 100vh;
+        /* Ensure scrolling works and footer isn't cut off by navbar/keyboard */
+        height: 100vh;
         overflow-y: auto;
-        /* Allow Scroll */
+        padding-bottom: 120px;
+        /* Extra space for bottom navs */
     }
 
     .converter-card {
@@ -489,6 +500,25 @@ footer p {
     .currency-row {
         flex-direction: column;
         gap: 1rem;
+        align-items: center;
+        /* Fix alignment of swap button */
+        position: relative;
+        z-index: 50;
+    }
+
+    /* "From" dropdown needs to be above "To" */
+    .select-group:first-of-type {
+        z-index: 30;
+    }
+
+    /* "To" dropdown needs to be below "From" but above Result */
+    .select-group:last-of-type {
+        z-index: 20;
+    }
+
+    /* Active State for Dropdowns (Added via JS) */
+    .select-group.z-active {
+        z-index: 1000 !important;
     }
 
     .select-group {
